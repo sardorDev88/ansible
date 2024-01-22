@@ -6,12 +6,14 @@
 
 
   - name: install updates (CentOS)
+    tags: always
     dnf:
       update_only: yes
       update_cache: yes
     when: ansible_distribution == "CentOS"
 
   - name: install updates (Ubuntu)
+    tags: always
     apt:
       upgrade: dist 
       update_cache: yes
@@ -22,6 +24,7 @@
   tasks:
 
   - name: install apache2 and php packages for Ubuntu 
+    tags: apache,apache2,ubuntu
     apt:
       name:
         - apache2
@@ -30,6 +33,7 @@
     when: ansible_distribution == "Ubuntu"
 
   - name: install php and apache packages for CentOS
+    tags: php,httpd, centos
     dnf:
       name:
         - httpd
